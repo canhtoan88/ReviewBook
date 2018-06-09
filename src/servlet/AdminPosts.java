@@ -30,7 +30,7 @@ public class AdminPosts extends HttpServlet {
 		int soluongbaiviet = 0;
 		int soluongchoduyet = 0;
 		try {
-			String sql 		= "select * from posts, posts_user, users, categories where posts.matheloai = categories.matheloai and posts.mabaiviet = posts_user.mabaiviet and posts_user.manguoidung = users.manguoidung order by chapnhan";
+			String sql 		= "select * from posts, posts_user, users, categories where posts.matheloai = categories.matheloai and posts.mabaiviet = posts_user.mabaiviet and posts_user.manguoidung = users.manguoidung order by chapnhan, thoigiandangbai desc";
 			Statement stmt 	= (Statement) c.createStatement();
 			ResultSet rs	= stmt.executeQuery(sql);
 			while (rs.next()) {

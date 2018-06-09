@@ -40,14 +40,14 @@ public class Admin extends HttpServlet {
 			String sql = "";
 			try {
 				// 1. Lấy dữ liệu tài khoản
-				sql = "select count(*) as soluongtaikhoan from accounts";
+				sql = "select count(*) as soluongtaikhoan from accounts where manguoidung > 0";
 				Statement stmt = (Statement) c.createStatement();
 				ResultSet rs = stmt.executeQuery(sql);
 				if (rs.next()) {
 					soluongtaikhoan = rs.getInt(1);
 				}
 				// Số lượng tài khoản mới
-				sql = "select count(*) from users where thoigiandangky > (date_add(curdate(), interval '-7' day))";
+				sql = "select count(*) from users where manguoidung > 0 and thoigiandangky > (date_add(curdate(), interval '-3' day))";
 				rs = stmt.executeQuery(sql);
 				if (rs.next()) {
 					taikhoanmoi = rs.getInt(1);
@@ -60,7 +60,7 @@ public class Admin extends HttpServlet {
 					soluongbaiviet = rs.getInt(1);
 				}
 				// Số lượng bài viết mới
-				sql = "select count(thoigiandangbai) from posts where thoigiandangbai > (date_add(curdate(), interval '-7' day))";
+				sql = "select count(thoigiandangbai) from posts where chapnhan = 0";
 				rs = stmt.executeQuery(sql);
 				if (rs.next()) {
 					baivietmoi = rs.getInt(1);
@@ -73,7 +73,7 @@ public class Admin extends HttpServlet {
 					soluongbinhluan = rs.getInt(1);
 				}
 				// Số lượng bình luận mới
-				sql = "select count(*) from comments where thoigianbinhluan > (date_add(curdate(), interval '-7' day))";
+				sql = "select count(*) from comments where thoigianbinhluan > (date_add(curdate(), interval '-3' day))";
 				rs = stmt.executeQuery(sql);
 				if (rs.next()) {
 					binhluanmoi = rs.getInt(1);
@@ -86,7 +86,7 @@ public class Admin extends HttpServlet {
 					soluongtruycap = rs.getInt(1);
 				}
 				// Số lượng truy cập mới
-				sql = "select count(*) from accesses where ngaytruycap > (date_add(curdate(), interval '-7' day))";
+				sql = "select count(*) from accesses where ngaytruycap > (date_add(curdate(), interval '-3' day))";
 				rs = stmt.executeQuery(sql);
 				if (rs.next()) {
 					truycapmoi = rs.getInt(1);

@@ -45,31 +45,13 @@
   		</div>
 	</nav>
 	<!-- End menu -->
-	<center><span style="color: red"><i>*Đăng ký tài khoản thất bại, có thể tên đăng nhập đã tồn tại!</i></span></center>
+	<center><div class="alert alert-danger"><i>*Đăng ký tài khoản thất bại, có thể tên đăng nhập đã tồn tại!</i></div></center>
 	<!-- Start sign up box -->
 	<jsp:include page="signup.jsp" flush="true"/>
 	<!-- End sign up box -->
 	
 	<!-- Start footer -->
-	<footer id="footer" class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="footer-wrapper">
-                    <div class="col-md-6 col-sm-6 con-xs-12">
-                        <div class="footer-brand">
-                            <img src="assets/img/HOME.png" alt="logo" />
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        <div class="copyright">
-                            <p>Made with <i class="fa fa-heart"></i> by <a target="_blank" href="https://www.facebook.com/CanhToan.888"> Cảnh Toàn </a> - <a target="_blank" href="https://www.facebook.com/profile.php?id=100004717664150"> Nhật Trường </a>2018. All rights reserved.</p>
-                        </div>
-                    </div>
-                </div>  
-            </div>
-        </div>
-    </footer>
+		<jsp:include page="footer.jsp"/>
     <!-- End footer -->
     
     <!-- Start sign in box -->

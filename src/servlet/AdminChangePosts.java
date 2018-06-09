@@ -62,6 +62,12 @@ public class AdminChangePosts extends HttpServlet {
 			sql = "delete from comments where mabaiviet = " + mabaiviet;
 			pstmt = (PreparedStatement) c.prepareStatement(sql);
 			pstmt.executeUpdate();
+			
+			// Delete posts from notifies's table
+			sql = "delete from notifies where mabaiviet = " + mabaiviet;
+			pstmt = (PreparedStatement) c.prepareStatement(sql);
+			pstmt.executeUpdate();
+			
 		} catch (Exception e) {
 			throw new ServletException(e);
 		}

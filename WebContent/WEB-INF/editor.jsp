@@ -14,7 +14,7 @@
 		<div class="form-group">
 			<label class="control-label col-sm-3">Tiêu đề bài viết:</label>
 		    <div class="col-sm-9 col-xs-9">
-		        <input type="text" name="tieude" class="form-control" value="Tiêu đề" required/>
+		        <input type="text" name="tieude" class="form-control" required/>
 		    </div>
 		</div>
 		<div class="form-group">

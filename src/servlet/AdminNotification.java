@@ -31,7 +31,7 @@ public class AdminNotification extends HttpServlet {
 		TopicPosts thongtinchinhsua = null;
 		int soluongthongbao = 0;
 		try {
-			String sql 		= "select * from notifies, posts_edit where notifies.mabaiviet = posts_edit.mabaiviet order by notifies.trangthai asc, mathongbao asc";
+			String sql 		= "select * from notifies, posts_edit where mathongbao = mathaydoi order by notifies.trangthai asc, mathongbao asc";
 			Statement stmt 	= (Statement) c.createStatement();
 			ResultSet rs	= stmt.executeQuery(sql);
 			while (rs.next()) {

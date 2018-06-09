@@ -95,7 +95,7 @@ public class ChangePosts extends HttpServlet {
 		Connection c = new DAO().getConnection();
 		try {
 			// Update posts_edit table
-			String sql = "insert into posts_edit values (" + mabaiviet + ", '" + tieude + "', '" + noidungvantat + "', '" + noidungbaiviet + "', curdate(), 0)";
+			String sql = "insert into posts_edit (mabaiviet, tieude, noidungvantat, noidungbaiviet, thoigianchinhsua, trangthai) values (" + mabaiviet + ", '" + tieude + "', '" + noidungvantat + "', '" + noidungbaiviet + "', curdate(), 0)";
 			PreparedStatement pstmt = (PreparedStatement) c.prepareStatement(sql);
 			pstmt.executeUpdate();
 			

@@ -15,9 +15,9 @@
   	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
   	<script type="text/javascript" src="assets/js/jquery-3.3.1.js"></script>
-	<title>Bài viết</title>
+	<title>${thongtinbaiviet.getTieuDe()}</title>
 </head>
-<body onload="thongbaobinhluan()">
+<body onload="thongbao()">
 	<!-- Start header -->
 	<div class="container">
 		<h1 class="text-center"><b><span style="color: blue">REVIEW</span> - <span style="color: green">SÁCH</span></b></h1>
@@ -69,44 +69,56 @@
                 <p id="commentArea" style="color: green; font-size: 16px; margin-top: 16px"><b>BÌNH LUẬN (${soluongbinhluan})</b></p>
                 <c:forEach items="${thongtinbinhluan}" var="binhluan">
 	                <div class="containerct">
-					  	<p>
+					  	<p id="comment${binhluan.getMaBinhLuan()}">
 					  		<span style="color: orange;">${binhluan.getHoTen()}</span>
 					  		<i><fmt:formatDate value="${binhluan.getThoiGianBinhLuan()}" pattern="dd-MM-yyyy"/></i>
-					  		<c:if test="${binhluan.getMaNguoiDung() == manguoidung}">
-					  			<sup>
-					  				<a href="Comment?mabinhluan=${binhluan.getMaBinhLuan()}&mabaiviet=${thongtinbaiviet.getMaBaiViet()}&matheloai=${matheloai}">Xóa</a> ||
-					  				<a href="#comment" id="fixComment">Chỉnh sửa</a>
-					  			</sup>
-					  		</c:if>
+						  	<c:if test="${binhluan.getMaNguoiDung() == manguoidung}">
+						  		<c:if test="${binhluan.getMaBinhLuan() != editmabinhluan}">
+						  			<sup>
+						  				<a href="Comment?mabinhluan=${binhluan.getMaBinhLuan()}&mabaiviet=${thongtinbaiviet.getMaBaiViet()}&matheloai=${matheloai}">Xóa</a> ||
+						  				<a href="EditComment?mabinhluan=${binhluan.getMaBinhLuan()}&mabaiviet=${thongtinbaiviet.getMaBaiViet()}&matheloai=${matheloai}">Chỉnh sửa</a>
+						  			</sup>
+						  		</c:if>
+								<c:if test="${binhluan.getMaBinhLuan() == editmabinhluan}">
+									<form id="editcomment" action="EditComment?mabinhluan=${binhluan.getMaBinhLuan()}&mabaiviet=${thongtinbaiviet.getMaBaiViet()}&matheloai=${matheloai}" method="post">
+									    <div class="form-group">
+									    	<textarea class="form-control" name="noidungbinhluan" rows="5" minlength="10" maxlength="300" autofocus>${noidungbinhluan}</textarea>
+									    	<span style="float: right"><input class="btn btn-success" style="margin: 10px 0" type="submit" value="Lưu"/></span>
+									    	<span style="float: right"><a href="" class="btn btn-success" style="margin: 10px 0" type="button">Hủy</a></span>
+									  	</div>
+									</form>
+						    	</c:if>
+						  	</c:if>
 					  	</p>
 					  <p style="padding: 0 20px">&emsp;&emsp;${binhluan.getNoiDungBinhLuan()}</p>
 					</div>
 				</c:forEach>
 				<c:if test="${manguoidung != null && manguoidung != 0}">
-					<form id="comment" action="Comment?mabaiviet=${thongtinbaiviet.getMaBaiViet()}&matheloai=${matheloai}" method="post">
-					    <div class="form-group" style="margin-right: 0px">
-					    	<textarea class="form-control" name="noidungbinhluan" rows="5" placeholder="Nhập nội dung bình luận ..." maxlength="300"></textarea>
-					    	<div class="col-xs-8 col-sm-8 col-md-9"></div>
-					    	<input class="btn btn-success" style="margin: 10px 0" type="submit" value="Đăng bình luận"/>
-					  	</div>
-					</form>
+					<c:if test="${editmabinhluan == null}">
+						<form id="comment" action="Comment?mabaiviet=${thongtinbaiviet.getMaBaiViet()}&matheloai=${matheloai}" method="post">
+						    <div class="form-group">
+						    	<textarea class="form-control" name="noidungbinhluan" rows="5" placeholder="Nhập nội dung bình luận ..." maxlength="300"></textarea>
+						    	<span style="float: right"><input class="btn btn-success" style="margin: 10px 0" type="submit" value="Đăng bình luận"/></span>
+						  	</div>
+						</form>
+					</c:if>
 				</c:if>
 				<c:if test="${manguoidung == null || manguoidung == 0}">
-					<p style="margin-bottom: 16px">Hãy <a onclick="document.getElementById('signin').style.display='block'"><i>đăng nhập</i></a> để bình luận cho bài viết này!! Hoặc <a onclick="document.getElementById('signup').style.display='block'"><i>đăng ký</i></a> nếu chưa có tài khoản.</p>
+					<p style="margin-bottom: 16px">Hãy<button  class="btn btn-link" onclick="document.getElementById('signin').style.display='block'"><i>đăng nhập</i></button>để bình luận cho bài viết này!! Hoặc<button class="btn btn-link" onclick="document.getElementById('signup').style.display='block'"><i>đăng ký</i></button>nếu chưa có tài khoản.</p>
 				</c:if>
-                <div class="col-xs-12 col-sm-12 cthightlight">
-                    <h5><b>Cùng chủ đề</b></h5>
+                <div class="col-xs-12 col-sm-12 ">
+                    <h5 style="padding: 9px 0;border-bottom: 1px solid #222"><b class="cthightlight">Cùng chủ đề</b></h5>
                 </div>
                 
                 <c:forEach items="${baivietcungchude}" var="baiviet">
-	               	<div class="col-md-3 col-sm-6 col-xs-12" style="margin-top: 10px; text-align: center;">
+	               	<div class="col-md-3 col-sm-6 col-xs-12 ccdstyle" style="margin-top: 10px; text-align: center;">
 	               		<a href="Reading?mabaiviet=${baiviet.getMaBaiViet()}&matheloai=${baiviet.getMaTheLoai()}" title="${baiviet.getTieuDe()}"><img style="width: 100%; max-width: 150px" src="${baiviet.getDuongDanHinhAnh()}" alt="${baiviet.getTieuDe()}"/></a><br />
 	               		<a href="Reading?mabaiviet=${baiviet.getMaBaiViet()}&matheloai=${baiviet.getMaTheLoai()}" title=""><span style="font-size: 17px">${baiviet.getTieuDe()}</span></a>
 	               	</div>
                	</c:forEach>
                 
 			</div>
-			<div class="col-md-3 col-sm-12 col-xs-12">
+			<div class="col-md-3">
                 <jsp:include page="highlight.jsp"/>
 			</div>
 		</div>
@@ -114,25 +126,7 @@
 	<!-- End body -->
 	
 	<!-- Start footer -->
-	<footer id="footer" class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="footer-wrapper">
-                    <div class="col-md-6 col-sm-6 con-xs-12">
-                        <div class="footer-brand">
-                            <img src="assets/img/HOME.png" alt="logo" />
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        <div class="copyright">
-                            <p>Made with <i class="fa fa-heart"></i> by <a target="_blank" href="https://www.facebook.com/CanhToan.888"> Cảnh Toàn </a> - <a target="_blank" href="https://www.facebook.com/profile.php?id=100004717664150"> Nhật Trường </a>2018. All rights reserved.</p>
-                        </div>
-                    </div>
-                </div>  
-            </div>
-        </div>
-    </footer>
+		<jsp:include page="footer.jsp"/>
     <!-- End footer -->
 
 	<!-- Start sign in box -->
@@ -184,7 +178,7 @@
 	
 	<c:if test="${binhluanthanhcong != null}">
 		<script type="text/javascript">
-			function thongbaobinhluan() {
+			function thongbao() {
 				alert("Đã bình luận cho bài viết này!!")
 			}
 		</script>
@@ -194,12 +188,28 @@
 	</c:if>
 	<c:if test="${xoabinhluanthanhcong != null}">
 		<script type="text/javascript">
-			function thongbaobinhluan() {
+			function thongbao() {
 				alert("Đã xóa bình luận!!")
 			}
 		</script>
 		<%
 			session.removeAttribute("xoabinhluanthanhcong");
+		%>
+	</c:if>
+	<c:if test="${chinhsuabinhluan != null}">
+		<script type="text/javascript">
+			function thongbao() {
+				alert("Đã chỉnh sửa bình luận!!")
+			}
+		</script>
+		<%
+			session.removeAttribute("chinhsuabinhluan");
+		%>
+	</c:if>
+	<c:if test="${editmabinhluan != null}">
+		<%
+			session.removeAttribute("editmabinhluan");
+			session.removeAttribute("noidungbinhluan");
 		%>
 	</c:if>
 </body>

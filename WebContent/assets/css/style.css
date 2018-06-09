@@ -206,3 +206,64 @@ span.psw {
     background-color: #222;
     color: #fff;
 }
+b.cthightlight {
+    padding: 9px 10px;
+}
+
+@media (min-width: 768px){
+    .cardnct {
+        height: 90px;
+    }
+}
+
+@media (max-width: 767px){
+    .col-xs-12.cthightlight.mt-xs-2 {
+    	margin-top:  1rem;
+	}
+}
+
+@media (min-width: 768px){
+    .col-md-3.col-sm-6.col-xs-12.ccdstyle {
+    	height:140px; 
+	}
+}
+@media (min-width: 768px){
+    .col-md-3.col-sm-6.col-xs-12.ccdstyle img {
+    	height:100px; 
+	}
+}
+
+@media (min-width: 992px){
+    .col-md-3.col-sm-6.col-xs-12.ccdstyle {
+	    height:  165px;
+	}
+}
+
+@media (min-width: 1200px){
+	.col-xs-12.nbstyle {
+	    height: 110px;
+	}
+}
+@media (min-width: 1200px){
+	.col-xs-12.nbstyle img{
+	    max-height: 90px;
+	}
+}
+@media (max-width: 991px){
+	.col-xs-12.nbstyle {
+	    min-height: 95px;
+	}
+}
+@media (max-width: 991px){
+	.col-xs-12.nbstyle img{
+	    max-height: 70px;
+	}
+}
+
+.col-xs-12.cdstyle {
+    min-height: 76px;
+}
+
+.col-xs-12.cdstyle img{
+    max-height: 70px;
+}

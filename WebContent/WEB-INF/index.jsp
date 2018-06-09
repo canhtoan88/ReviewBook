@@ -72,7 +72,7 @@
 	                    
 	                    <div class="actions">
 	                    	<a href="Reading?mabaiviet=${moinhat.getMaBaiViet()}&matheloai=${moinhat.getMaTheLoai()}"><button class="btn btn-round btn-fill btn-neutral btn-modern">
-	                            Đọc thêm
+	                            Đọc bài viết
 	                        </button></a>
 	                    </div>
 	                </div>
@@ -84,9 +84,11 @@
 	                    	<c:if test="${moinhat.getMaTheLoai() == 3}">Văn học</c:if>
 	                    	<c:if test="${moinhat.getMaTheLoai() == 4}">Tiểu thuyết</c:if>
 	                    </span></h6>
-	                    <h4 class="title"><a href="Reading?mabaiviet=${moinhat.getMaBaiViet()}&matheloai=${moinhat.getMaTheLoai()}">${moinhat.getTieuDe()}</a></h4>
-	                    <p class="description">${moinhat.getNoiDungVanTat()}</p>
-	                    <i>Thời gian: <fmt:formatDate value="${moinhat.getThoiGianDangBai()}" pattern="dd-MM-yyyy"/></i>
+	                    <div class="cardnct">
+	                    	<h4 class="title"><a href="Reading?mabaiviet=${moinhat.getMaBaiViet()}&matheloai=${moinhat.getMaTheLoai()}">${moinhat.getTieuDe()}</a></h4>
+	                    	<p class="description">${moinhat.getNoiDungVanTat()}</p>
+	                    </div>
+	                    <hr/><i>Thời gian: <fmt:formatDate value="${moinhat.getThoiGianDangBai()}" pattern="dd-MM-yyyy"/></i>
 	                </div>                                           
 	            </div>
 	         </div>
@@ -118,7 +120,7 @@
 					  	</div>
 	
 					  	<div class="col-sm-6">
-					  		<div class="col-xs-12" style="margin-top: 10px">
+					  		<div class="col-xs-12 cdstyle" style="margin-top: 10px">
 	                            <div class="col-xs-4" style="padding-left: 0">
 	                               <a href="Reading?mabaiviet=${tieptheo.getHomePosts().get(1).getMaBaiViet()}&matheloai=${tieptheo.getHomePosts().get(1).getMaTheLoai()}" title=""><img style="width: 100%;max-width: 100px" src="${tieptheo.getHomePosts().get(1).getDuongDanHinhAnh()}" alt="${tieptheo.getHomePosts().get(1).getTieuDe()}"/></a>
 	                            </div>
@@ -127,7 +129,7 @@
 	                               <p><i><fmt:formatDate value="${tieptheo.getHomePosts().get(1).getThoiGianDangBai()}" pattern="dd-MM-yyyy"/></i></p>
 	                            </div>
 	                        </div>
-	                        <div class="col-xs-12" style="margin-top: 10px">
+	                        <div class="col-xs-12 cdstyle" style="margin-top: 10px">
 	                            <div class="col-xs-4" style="padding-left: 0">
 	                               <a href="Reading?mabaiviet=${tieptheo.getHomePosts().get(2).getMaBaiViet()}&matheloai=${tieptheo.getHomePosts().get(2).getMaTheLoai()}" title=""><img style="width: 100%;max-width: 100px" src="${tieptheo.getHomePosts().get(2).getDuongDanHinhAnh()}" alt="${tieptheo.getHomePosts().get(2).getTieuDe()}"/></a>
 	                            </div>
@@ -136,7 +138,7 @@
 	                               <p><i><fmt:formatDate value="${tieptheo.getHomePosts().get(2).getThoiGianDangBai()}" pattern="dd-MM-yyyy"/></i></p>
 	                            </div>
 	                        </div>
-	                        <div class="col-xs-12" style="margin-top: 10px">
+	                        <div class="col-xs-12 cdstyle" style="margin-top: 10px">
 	                            <div class="col-xs-4" style="padding-left: 0">
 	                               <a href="Reading?mabaiviet=${tieptheo.getHomePosts().get(3).getMaBaiViet()}&matheloai=${tieptheo.getHomePosts().get(3).getMaTheLoai()}" title=""><img style="width: 100%;max-width: 100px" src="${tieptheo.getHomePosts().get(3).getDuongDanHinhAnh()}" alt="${tieptheo.getHomePosts().get(3).getTieuDe()}"/></a>
 	                            </div>
@@ -146,8 +148,8 @@
 	                            </div>
 	                        </div>
 					  	</div>
-	                    <div class="col-xs-12 text-center">
-	                        <a href="Topic?matheloai=${tieptheo.getMaTheLoai()}" title="Xem nhiều hơn"><button type="button" class="btn" style="background-color: #00b900; color: #ffff1a; margin-bottom: 5px">Xem thêm</button></a>
+	                    <div class="col-xs-12 text-center" style="margin-top: 10px">
+	                        <a href="Topic?matheloai=${tieptheo.getMaTheLoai()}" title="Xem nhiều hơn"><button type="button" class="btn" style="background-color: #00b900; color: #ffff1a; margin-bottom: 5px">Xem nhiều hơn</button></a>
 	                    </div>
 					</div>
                 </c:forEach>
@@ -160,25 +162,7 @@
 	<!-- End body -->
 	
 	<!-- Start footer -->
-	<footer id="footer" class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="footer-wrapper">
-                    <div class="col-md-6 col-sm-6 con-xs-12">
-                        <div class="footer-brand">
-                            <img src="assets/img/HOME.png" alt="logo" />
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        <div class="copyright">
-                            <p>Made with <i class="fa fa-heart"></i> by <a target="_blank" href="https://www.facebook.com/CanhToan.888"> Cảnh Toàn </a> - <a target="_blank" href="https://www.facebook.com/profile.php?id=100004717664150"> Nhật Trường </a>2018. All rights reserved.</p>
-                        </div>
-                    </div>
-                </div>  
-            </div>
-        </div>
-    </footer>
+		<jsp:include page="footer.jsp"/>
     <!-- End footer -->
 
 	<!-- Start sign in box -->
@@ -199,7 +183,7 @@
 	<!-- End view profile -->
 
 	<!-- Start Scroll to top -->
-	<button onclick="topFunction()" id="scrolltop" title="Go to top">Top</button>
+	<button onclick="topFunction()" id="scrolltop" title="Lên đầu trang">Top</button>
 	<!-- End Scroll to top -->
 	
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

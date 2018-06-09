@@ -34,7 +34,7 @@
 		</div>
 		<div class="ctcontainer" style="background-color:#f1f1f1">
 			<button onclick="document.getElementById('signup').style.display='block'; document.getElementById('signin').style.display='none'" type="button" class="cancel" id="taotaikhoan">Tạo tài khoản</button>
-     			<span class="psw"><a href="#">Quên mật khẩu?</a></span>
+     		<span class="psw"><a href="GetPassword">Quên mật khẩu?</a></span>
    		</div>
 	</form>
 	<script type="text/javascript">

@@ -29,7 +29,7 @@ public class AdminAccesses extends HttpServlet {
 		ArrayList<AdminAccess> thongtintruycap = new ArrayList<>();
 		
 		try {
-			String sql 		= "select * from accesses order by ngaytruycap desc";
+			String sql 		= "select * from accesses order by ngaytruycap desc, thoigiantruycap desc";
 			Statement stmt 	= (Statement) c.createStatement();
 			ResultSet rs	= stmt.executeQuery(sql);
 			while (rs.next()) {

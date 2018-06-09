@@ -53,6 +53,7 @@ public class Found extends HttpServlet {
 		request.setAttribute("noidungdatimkiem", noidungtimkiem);
 		request.setAttribute("thongtintimkiem", thongtintimkiem);
 		request.setAttribute("soluongketqua", soluongketqua);
+		request.setAttribute("noidungtimkiem", noidungtimkiem);
 		request.getRequestDispatcher("/WEB-INF/found.jsp").forward(request, response);
 	}
 

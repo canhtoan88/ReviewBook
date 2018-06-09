@@ -115,14 +115,13 @@
 				                            <tr>
 				                            	<td>${thongbao.getMaThongBao()}</td>
 				                            	<td>
-				                            	<c:if test="${thongbao.isTrangThai()==false}">
-													<a href="AdminNotification?mabaiviet=${thongbao.getMaBaiViet()}#formChinhSua">${thongbao.getNoiDungThongBao()}</a>
-												</c:if>
-												<c:if test="${thongbao.isTrangThai()==true}">
-													${thongbao.getNoiDungThongBao()}
-												</c:if>
-				                            		
-				                            	</a></td>
+					                            	<c:if test="${thongbao.isTrangThai()==false}">
+														<a href="AdminNotification?mabaiviet=${thongbao.getMaBaiViet()}#formChinhSua">${thongbao.getNoiDungThongBao()}</a>
+													</c:if>
+													<c:if test="${thongbao.isTrangThai()==true}">
+														${thongbao.getNoiDungThongBao()}
+													</c:if>
+				                            	</td>
 				                            	<td><fmt:formatDate value="${thongbao.getThoiGianThongBao()}" pattern="yyyy-MM-dd"/></td>
 				                            	<td><i>
 				                            		<c:if test="${thongbao.getTrangThaiChinhSua() == 0}">Chờ duyệt</c:if>
@@ -167,17 +166,7 @@
 			    	</div>
                 </div>
             </div>
-            <footer class="footer">
-                <div class="container-fluid">
-                    <p class="copyright pull-right">
-                        &copy;
-                        <script>
-                            document.write(new Date().getFullYear())
-                        </script>
-                        <a href="http://www.creative-tim.com">Cảnh Toàn - Nhập Trường</a>, made with love for a better web
-                    </p>
-                </div>
-            </footer>
+            <jsp:include page="admin_footer.jsp"/>
         </div>
     </div>
 	

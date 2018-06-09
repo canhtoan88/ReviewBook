@@ -31,13 +31,13 @@ public class AdminAccounts extends HttpServlet {
 		ArrayList<UserProfile> thongtinnguoidung = new ArrayList<UserProfile>();
 		int soluongtaikhoan = 0;
 		try {
-			String sql 		= "select * from accounts, users where accounts.manguoidung = users.manguoidung";
+			String sql 		= "select * from accounts, users where accounts.manguoidung = users.manguoidung and accounts.manguoidung > 0";
 			Statement stmt 	= (Statement) c.createStatement();
 			ResultSet rs	= stmt.executeQuery(sql);
 			while (rs.next()) {
 				thongtinnguoidung.add(new UserProfile(rs.getInt("manguoidung"), rs.getString("tendangnhap"), rs.getString("hoten"), rs.getDate("thoigiandangky")));
 			}
-			sql = "select count(*) as soluongtaikhoan from accounts";
+			sql = "select count(*) as soluongtaikhoan from accounts where manguoidung > 0";
 			rs	= stmt.executeQuery(sql);
 			if (rs.next()) {
 				soluongtaikhoan = rs.getInt("soluongtaikhoan");

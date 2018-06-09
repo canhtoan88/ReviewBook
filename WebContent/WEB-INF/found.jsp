@@ -62,48 +62,37 @@
 
 	<!-- Start body -->
 	<div class="container">
-		<c:if test="${soluongketqua == 0}">
-			<h2>Không có kết quả nào được tìm thấy</h2>
-		</c:if>
-		<c:if test="${soluongketqua != 0}">
-			<h2>Có ${soluongketqua} kết quả được tìm thấy</h2>
-			<c:forEach items="${thongtintimkiem}" var="timkiem">
-				<div class="row">
-		            <div class="col-sm-4">
-		                <a href="Reading?mabaiviet=${timkiem.getMaBaiViet()}&matheloai=${timkiem.getMaTheLoai()}" title="${timkiem.getTieuDe()}"><img class="center-block" src="${timkiem.getDuongDanHinhAnh()}" alt="" style="width: 100%; max-width: 150px"/></a>
-		            </div>
-		            <div class="col-sm-8">
-		                <a href="Reading?mabaiviet=${timkiem.getMaBaiViet()}&matheloai=${timkiem.getMaTheLoai()}" title=""><h4>${timkiem.getTieuDe()}</h4></a>
-		                <p><i><fmt:formatDate value="${timkiem.getThoiGianDangBai()}" pattern="dd-MM-yyyy"/></i></p>
-		                <p>${timkiem.getNoiDungVanTat()}</p>
-		            </div>
-		        </div>
-		        <div class="vl"></div>
-			</c:forEach>
-		</c:if>
+		<div class="row">
+			<div class="col-sm-9">
+				<c:if test="${soluongketqua == 0}">
+					<h2>Không có kết quả nào được tìm thấy với <i style="color: green">'${noidungtimkiem}'</i></h2>
+				</c:if>
+				<c:if test="${soluongketqua != 0}">
+					<h2>Có ${soluongketqua} kết quả được tìm thấy với <i style="color: green">'${noidungtimkiem}'</i></h2>
+					<c:forEach items="${thongtintimkiem}" var="timkiem">
+						<div class="row">
+				            <div class="col-sm-4">
+				                <a href="Reading?mabaiviet=${timkiem.getMaBaiViet()}&matheloai=${timkiem.getMaTheLoai()}" title="${timkiem.getTieuDe()}"><img class="center-block" src="${timkiem.getDuongDanHinhAnh()}" alt="" style="width: 100%; max-width: 150px"/></a>
+				            </div>
+				            <div class="col-sm-8">
+				                <a href="Reading?mabaiviet=${timkiem.getMaBaiViet()}&matheloai=${timkiem.getMaTheLoai()}" title=""><h4>${timkiem.getTieuDe()}</h4></a>
+				                <p><i><fmt:formatDate value="${timkiem.getThoiGianDangBai()}" pattern="dd-MM-yyyy"/></i></p>
+				                <p>${timkiem.getNoiDungVanTat()}</p>
+				            </div>
+				        </div>
+				        <hr />
+					</c:forEach>
+				</c:if>
+			</div>
+			<div class="col-md-3">
+				<jsp:include page="highlight.jsp"/>
+			</div>
+		</div>
     </div>
 	<!-- End body -->
 
 	<!-- Start footer -->
-	<footer id="footer" class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="footer-wrapper">
-                    <div class="col-md-6 col-sm-6 con-xs-12">
-                        <div class="footer-brand">
-                            <img src="assets/img/HOME.png" alt="logo" />
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        <div class="copyright">
-                            <p>Made with <i class="fa fa-heart"></i> by <a target="_blank" href="https://www.facebook.com/CanhToan.888"> Cảnh Toàn </a> - <a target="_blank" href="https://www.facebook.com/profile.php?id=100004717664150"> Nhật Trường </a>2018. All rights reserved.</p>
-                        </div>
-                    </div>
-                </div>  
-            </div>
-        </div>
-    </footer>
+		<jsp:include page="footer.jsp"/>
     <!-- End footer -->
     
     <!-- Start sign in box -->

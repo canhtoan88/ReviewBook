@@ -55,7 +55,7 @@ public class Home extends HttpServlet {
 		// Có 4 chủ đề nên chạy 4 lần - số lần chạy thứ i đại diện cho thể loại i
 		for (int i = 1; i <= 4; i++) {
 			try {
-				String sql 		= "select * from posts where matheloai = " + i + " order by mabaiviet desc limit 1";
+				String sql 		= "select * from posts where chapnhan = 1 and matheloai = " + i + " order by mabaiviet desc limit 1";
 				Statement stmt 	= (Statement) c.createStatement();
 				ResultSet rs	= stmt.executeQuery(sql);
 				if (rs.next()) {
@@ -100,29 +100,32 @@ public class Home extends HttpServlet {
 		}
 		
 		// Quản lý truy cập
-		Cookie[] cookie = request.getCookies();
-		for (Cookie ck : cookie) {
-			try {
-				String sql 		= "select thoigiantruycap from accesses where ngaytruycap = curdate() and cookie = '" + ck.getValue() + "'";
-				Statement stmt 	= (Statement) c.createStatement();
-				ResultSet rs	= stmt.executeQuery(sql);
-				if (rs.next()) {
-					sql = "select id, luottruycap from accesses where time_to_sec(TIMEDIFF(curtime(), '" + rs.getTime(1) + "')) > 1800";
-					rs	= stmt.executeQuery(sql);
+		if (request.getCookies() != null) {
+			Cookie[] cookie = request.getCookies();
+			for (Cookie ck : cookie) {
+				try {
+					String sql 		= "select thoigiantruycap, id from accesses where ngaytruycap = curdate() and cookie = '" + ck.getValue() + "'";
+					Statement stmt 	= (Statement) c.createStatement();
+					ResultSet rs	= stmt.executeQuery(sql);
 					if (rs.next()) {
-						sql = "update accesses set luottruycap = " + (rs.getInt(2) + 1) + ", thoigiantruycap = curtime() where id = " + rs.getInt(1);
+						int id = rs.getInt(2);
+						sql = "select luottruycap from accesses where id = " + id + " and time_to_sec(TIMEDIFF(curtime(), '" + rs.getTime(1) + "')) > 1800";
+						rs	= stmt.executeQuery(sql);
+						if (rs.next()) {
+							sql = "update accesses set luottruycap = " + (rs.getInt(1) + 1) + ", thoigiantruycap = curtime() where id = " + id;
+							PreparedStatement pstmt = (PreparedStatement) c.prepareStatement(sql);
+							pstmt.executeUpdate();
+						}
+					} else {
+						sql = "insert into accesses (cookie, ngaytruycap, thoigiantruycap, luottruycap) values ('" + ck.getValue() + "', curdate(), curtime(), 1)";
 						PreparedStatement pstmt = (PreparedStatement) c.prepareStatement(sql);
 						pstmt.executeUpdate();
 					}
-				} else {
-					sql = "insert into accesses (cookie, ngaytruycap, thoigiantruycap, luottruycap) values ('" + ck.getValue() + "', curdate(), curtime(), 1)";
-					PreparedStatement pstmt = (PreparedStatement) c.prepareStatement(sql);
-					pstmt.executeUpdate();
+				} catch (Exception e) {
+					throw new ServletException(e);
 				}
-			} catch (Exception e) {
-				throw new ServletException(e);
 			}
-		}
+		} else response.sendRedirect("Home");
 		
 		session.setAttribute("baivietmoinhat", baivietmoinhat);
 		session.setAttribute("dsbaiviettieptheo", dsbaiviettieptheo);

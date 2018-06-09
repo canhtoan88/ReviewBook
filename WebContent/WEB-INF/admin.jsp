@@ -20,7 +20,7 @@
 </head>
 <body>
 	<div class="wrapper">
-        <div class="sidebar" data-color="purple" data-image="images/sidebar-1.jpg">
+        <div class="sidebar" data-color="purple" data-image="images/sidebar.jpg">
 			<div class="logo">
 				<a href="Admin" class="simple-text">${name}</a>
 				<a href="Admin" class="simple-text" style="font-size: 12px">Adminstrator</a>
@@ -155,7 +155,7 @@
                                 </div>
                                 <div class="card-content">
                                     <p class="category">Lượt truy cập</p>
-                                    <h3 class="title"><a href="AdminAccess">${dulieutonghop.getSoluongtruycap()}</a></h3>
+                                    <h3 class="title"><a href="AdminAccesses">${dulieutonghop.getSoluongtruycap()}</a></h3>
                                 </div>
                                 <div class="card-footer">
                                     <div class="stats">
@@ -250,17 +250,7 @@
                     </div>
                 </div>
             </div>
-            <footer class="footer">
-                <div class="container-fluid">
-                    <p class="copyright pull-right">
-                        &copy;
-                        <script>
-                            document.write(new Date().getFullYear())
-                        </script>
-                        <a href="http://www.creative-tim.com">Cảnh Toàn - Nhập Trường</a>, made with love for a better web
-                    </p>
-                </div>
-            </footer>
+            <jsp:include page="admin_footer.jsp"/>
         </div>
     </div>
 	

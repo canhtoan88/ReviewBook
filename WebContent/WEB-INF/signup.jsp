@@ -15,10 +15,10 @@
 		</div>
 		<div class="ctcontainer">
 			<label for="name"><b>Họ và Tên</b></label>
-     			<input class="form-control" type="text" placeholder="Họ và Tên" name="hoten" required/>
+     			<input class="form-control" type="text" placeholder="Họ và Tên" name="hoten" minlength="8" required/>
 
 			<label for="uname"><b>Tên đăng nhập</b></label>
-     			<input class="form-control" type="text" placeholder="Tên đăng nhập" name="tendangnhap" required/>
+     			<input class="form-control" type="text" placeholder="Tên đăng nhập" name="tendangnhap" minlength="6" required/>
 
      			<label for="gender"><b>Giới tính</b></label>
      			<select class="form-control" name="gioitinh" required style="margin: 7px 0">
@@ -28,21 +28,26 @@
      			</select>
 
      			<label for="email"><b>Email</b></label>
-     			<input class="form-control" type="email" placeholder="Email" name="email" required="email"/>
+     			<input class="form-control" type="email" placeholder="Email" name="email" minlength="16" required"/>
 
      			<label for="psw"><b>Mật khẩu</b></label>
-     			<input class="form-control" type="password" placeholder="Mật khẩu" name="matkhau" required/>
+     			<input class="form-control" type="password" placeholder="Mật khẩu" name="matkhau" minlength="6" required/>
 
      			<label for="psw"><b>Xác nhận mật khẩu</b></label>
      			<input class="form-control" type="password" placeholder="Mật khẩu" name="nhaplaimatkhau" required/>
-				<input type="hidden" name="url" value="" id="url"/>
+				<input type="hidden" name="url4" value="" id="url4"/>
        
      			<button class="btn btn-danger btn-block btn-ct" type="submit">Đăng Ký</button>
 		</div>
 	</form>
-	<script>
-		document.getElementById("demo").innerHTML = window.location.href;
+	
+	<script type="text/javascript">
+		/* document.getElementById("url").innerHTML = window.location.href; */
+		$(document).ready(function () {
+        	$("#url4").val(window.location.href);
+		});
 	</script>
+	
     <script type="text/javascript">
 	    function kiemtramatkhau(form) {
 	        matkhau = form.matkhau.value;

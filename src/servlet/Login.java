@@ -97,7 +97,7 @@ public class Login extends HttpServlet {
 
 			String url = request.getParameter("url");
 			
-			if (!url.equals("http://localhost:8080/ReviewBook/Login")) {
+			if (!url.equals("http://localhost:8080/ReviewBook/Login") && !url.equals("http://localhost:8080/ReviewBook/GetPassword") && !url.equals("http://localhost:8080/ReviewBook/Signup")) {
 				session.setAttribute("url", url);
 			}
 		

@@ -236,5 +236,15 @@
 			session.removeAttribute("chinhsuathanhcong");
 		%>
 	</c:if>
+	<c:if test="${laymatkhauthanhcong != null}">
+		<script type="text/javascript">
+			function thongbao() {
+				alert("Lấy lại mật khẩu thành công!! Mật khẩu là 123. Vui lòng đổi lại mật khẩu trong phần thông tin!")
+			}
+		</script>
+		<%
+			session.removeAttribute("laymatkhauthanhcong");
+		%>
+	</c:if>
 </body>
 </html>

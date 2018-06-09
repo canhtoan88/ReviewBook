@@ -137,7 +137,7 @@ public class Reading extends HttpServlet {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-				
+			
 			request.getRequestDispatcher("/WEB-INF/reading.jsp").forward(request, response);
 		} else {
 			if (manguoidung == 0) {

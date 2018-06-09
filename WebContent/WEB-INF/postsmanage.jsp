@@ -77,9 +77,9 @@
 			                <td>${sobaiviet.getLuotXem()}</td>
 			                <td>
 			                	<form action="AdminChangePosts?mabaiviet=${sobaiviet.getMaBaiViet()}" method="post">
-			                		<input class="btn btn-warning" type="submit" value="Xóa bài viết"/>
+			                		<input class="btn btn-danger" type="submit" value="Xóa bài viết"/>
 			                		<c:if test="${sobaiviet.getTrangThai() == true}">
-			                			<a type="button" class="btn btn-primary" href="ChangePosts?mabaiviet=${sobaiviet.getMaBaiViet()}">Chỉnh sửa</a>
+			                			<a type="button" class="btn btn-info" href="ChangePosts?mabaiviet=${sobaiviet.getMaBaiViet()}">Chỉnh sửa</a>
 			                		</c:if>
 			                	</form>
 			                </td>
@@ -92,25 +92,7 @@
 	<!-- End view list posts -->
 	
     <!-- Start footer -->
-	<footer id="footer" class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="footer-wrapper">
-                    <div class="col-md-6 col-sm-6 con-xs-12">
-                        <div class="footer-brand">
-                            <img src="assets/img/HOME.png" alt="logo" />
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        <div class="copyright">
-                            <p>Made with <i class="fa fa-heart"></i> by <a target="_blank" href="https://www.facebook.com/CanhToan.888"> Cảnh Toàn </a> - <a target="_blank" href="https://www.facebook.com/profile.php?id=100004717664150"> Nhật Trường </a>2018. All rights reserved.</p>
-                        </div>
-                    </div>
-                </div>  
-            </div>
-        </div>
-    </footer>
+		<jsp:include page="footer.jsp"/>
     <!-- End footer -->
     
     <!-- Start view profile -->
@@ -127,7 +109,22 @@
 	
 	<script type="text/javascript">
 		$(document).ready(function() {
-    		$('#example').DataTable();
+    		$('#example').DataTable({
+    			"language": {
+    	            "lengthMenu": "Hiển thị _MENU_ mục",
+    	            "info": "Trang _PAGE_ trên _PAGES_",
+    	            "search": "Tìm kiếm",
+    	            "decimal": "Tìm kiếm",
+    	            "paginate": {
+    	                "first":      "Đầu",
+    	                "last":       "Cuối",
+    	                "next":       "Kế Tiếp",
+    	                "previous":   "Trước"
+    	            },
+    	            "zeroRecords":    "Không có kết quả được tìm thấy",
+    	            "emptyTable":     "Không có dữ liệu trong bảng"
+    			}
+    		});
 		});
 	</script>
 	<c:if test="${xoabaivietthanhcong != null}">

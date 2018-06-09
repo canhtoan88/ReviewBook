@@ -14,7 +14,20 @@
   	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
   	<script type="text/javascript" src="assets/js/jquery-3.3.1.js"></script>
-	<title>Kỹ năng sống</title>
+	<title>
+		<c:if test="${matheloai == 1}">
+			Kỹ năng sống
+		</c:if>
+		<c:if test="${matheloai == 2}">
+			Kinh doanh
+		</c:if>
+		<c:if test="${matheloai == 3}">
+			Văn học
+		</c:if>
+		<c:if test="${matheloai == 4}">
+			Tiểu thuyết
+		</c:if>
+	</title>
 </head>
 <body>
 	<!-- Start header -->
@@ -71,31 +84,13 @@
 	                <p><i><fmt:formatDate value="${baiviet.getThoiGianDangBai()}" pattern="dd-MM-yyyy"/></i></p>
 	                <p>${baiviet.getNoiDungVanTat()}</p>
 	            </div>
-	        </div><br/>
+	        </div><hr/>
         </c:forEach>
     </div>
 	<!-- End body -->
 
 	<!-- Start footer -->
-	<footer id="footer" class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="footer-wrapper">
-                    <div class="col-md-6 col-sm-6 con-xs-12">
-                        <div class="footer-brand">
-                            <img src="assets/img/HOME.png" alt="logo" />
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        <div class="copyright">
-                            <p>Made with <i class="fa fa-heart"></i> by <a target="_blank" href="https://www.facebook.com/CanhToan.888"> Cảnh Toàn </a> - <a target="_blank" href="https://www.facebook.com/profile.php?id=100004717664150"> Nhật Trường </a>2018. All rights reserved.</p>
-                        </div>
-                    </div>
-                </div>  
-            </div>
-        </div>
-    </footer>
+		<jsp:include page="footer.jsp"/>
     <!-- End footer -->
     
     <!-- Start sign in box -->

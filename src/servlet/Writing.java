@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,6 +24,7 @@ import com.mysql.jdbc.Statement;
 
 import connect.DAO;
 import models.FileUpload;
+import models.UserProfile;
 
 @WebServlet("/Writing")
 public class Writing extends HttpServlet {
@@ -101,7 +103,6 @@ public class Writing extends HttpServlet {
 						}
 						else if (fileName.equals("url3")) {
 							url = value;
-							System.out.println(url);
 						}
 						else {
 							noidungbaiviet = value;
@@ -148,6 +149,30 @@ public class Writing extends HttpServlet {
 		}
 		if (manguoidung > 0) {
 			session.setAttribute("guibaithanhcong", "");
+			
+			try {
+				String sql = "select * from users, accounts where accounts.manguoidung = users.manguoidung and accounts.manguoidung = '" + manguoidung + "'";
+				Statement stmt = (Statement) c.createStatement();
+				ResultSet rs = stmt.executeQuery(sql);
+				if (rs.next()) {
+					String hoten 		= rs.getString("hoten");
+					Boolean gioitinh 	= rs.getBoolean("gioitinh");
+					String email 		= rs.getString("email");
+					Date thoigiandangky = rs.getDate("thoigiandangky");
+					String matkhau 		= rs.getString("matkhau");
+					int soluongbaiviet 	= 0;
+					sql = "select count(*) as soluongbaiviet from posts_user where manguoidung = " + manguoidung;
+					rs = stmt.executeQuery(sql);
+					if (rs.next()) {
+						soluongbaiviet = rs.getInt("soluongbaiviet");
+					}
+					
+					UserProfile thongtinnguoidung = new UserProfile(hoten, gioitinh, email, thoigiandangky, soluongbaiviet, matkhau, manguoidung);
+					session.setAttribute("thongtinnguoidung", thongtinnguoidung);
+				}
+			} catch (Exception e) {
+				throw new ServletException(e);
+			}
 		} else session.setAttribute("dangbaithanhcong", "");
 		
 		response.sendRedirect(url);

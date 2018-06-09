@@ -50,6 +50,12 @@ public class Signup extends HttpServlet {
 			Statement STMT = (Statement) c.createStatement();
 			ResultSet RS = STMT.executeQuery(SQL);
 			
+			// Lưu lại url cả khi đăng ký sai
+			String url = request.getParameter("url4");
+			if (!url.equals("http://localhost:8080/ReviewBook/Signup") && !url.equals("http://localhost:8080/ReviewBook/GetPassword") && !url.equals("http://localhost:8080/ReviewBook/Signup")) {
+				session.setAttribute("url", url);
+			}
+			
 			// So sánh tendangnhap với từng tài khoản
 			if (RS.next() && RS.getInt("sotaikhoan") > 0) {
 				response.sendRedirect("Signup");
@@ -94,9 +100,6 @@ public class Signup extends HttpServlet {
 				session.setAttribute("dangkythanhcong", "");// Khi đăng ký thành công
 				session.setAttribute("manguoidung", manguoidung);
 				session.setAttribute("username", tendangnhap);
-				
-				String url = request.getParameter("url");
-				session.setAttribute("url", url);
 				
 				response.sendRedirect("Login");
 			}
